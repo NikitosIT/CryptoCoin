@@ -1,0 +1,19 @@
+<header class="app-header">
+  <a routerLink="/home" class="app-header__brand">CryptoToken</a>
+  <nav class="app-header__nav" aria-label="Main navigation">
+    <a
+      routerLink="/home"
+      routerLinkActive="app-header__link--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="app-header__link"
+    >
+      Main
+    </a>
+    <a routerLink="/apps" routerLinkActive="app-header__link--active" class="app-header__link">
+      Apps
+    </a>
+    <a routerLink="/forms" routerLinkActive="app-header__link--active" class="app-header__link">
+      Forms
+    </a>
+  </nav>
+</header>

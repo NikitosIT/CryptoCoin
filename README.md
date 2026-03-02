@@ -1,59 +1,35 @@
-# CryptoCoin
+# CryptoToken
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+Simple crypto token list with real time update, powered by the CoinGecko API.
 
-## Development server
+## Quick start
 
-To start a local development server, run:
+1. **Get a CoinGecko API key**  
+   Sign up at [CoinGecko](https://www.coingecko.com/en/api) and create an API key.
 
-```bash
-ng serve
-```
+2. **Configure the backend**  
+   In `backend/`, create a `.env` file (or copy `.env.example` to `.env`) and set:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+   ```
+   COINGECKO_API_KEY=your_key_here
+   ```
 
-## Code scaffolding
+3. **Start the backend** (API runs on port 3006)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+   ```bash
+   cd backend
+   npm install
+   node index.js
+   ```
 
-```bash
-ng generate component component-name
-```
+4. **Start the frontend** (in a new terminal)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+   ```bash
+   cd frontend
+   npm install
+   npm start
+   ```
 
-```bash
-ng generate --help
-```
+   Open [http://localhost:4200](http://localhost:4200) in your browser.
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+That’s it. The app will load the token list with real time update and you can open any token for details.

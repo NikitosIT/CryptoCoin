@@ -1,0 +1,42 @@
+<section class="coins">
+  <div class="coins__header">
+    <h1 class="coins__title">Tokens</h1>
+    <button type="button" class="coins__refresh" (click)="refresh()" aria-label="Refresh list">
+      Refresh
+    </button>
+  </div>
+  @if (result().error) {
+    <p class="coins__error">{{ result().error }}</p>
+  } @else if (result().coins.length === 0) {
+    <p class="coins__empty">Loading…</p>
+  } @else {
+    <ul class="coins__list">
+      @for (coin of result().coins; track coin.id) {
+        <li class="coin-card">
+          <a [routerLink]="['/home', coin.id]" class="coin-card__link">
+            <img
+              [src]="coin.image"
+              [alt]="coin.name"
+              class="coin-card__img"
+              width="32"
+              height="32"
+              loading="lazy"
+            />
+            <div class="coin-card__body">
+              <span class="coin-card__name">{{ coin.name }}</span>
+              <span class="coin-card__symbol">{{ coin.symbol }}</span>
+            </div>
+            <div class="coin-card__meta">
+              @if (coin.market_cap_rank != null) {
+                <span class="coin-card__rank">#{{ coin.market_cap_rank }}</span>
+              }
+              @if (coin.current_price != null) {
+                <span class="coin-card__price">{{ coin.current_price | number: '1.2-6' }} USD</span>
+              }
+            </div>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</section>

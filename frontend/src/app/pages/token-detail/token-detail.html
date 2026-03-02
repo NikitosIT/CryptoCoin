@@ -1,0 +1,56 @@
+@let state = coinState();
+@if (state.status === 'loading') {
+  <p class="token-detail__loading">Loading…</p>
+} @else if (state.data === null) {
+  <p class="token-detail__error">Token not found.</p>
+} @else {
+  @let c = state.data;
+  <article class="token-detail">
+    <header class="token-detail__header">
+      <img [src]="c.image" [alt]="c.name" class="token-detail__img" width="64" height="64" />
+      <div class="token-detail__headline">
+        <h1 class="token-detail__name">{{ c.name }}</h1>
+        <span class="token-detail__symbol">{{ c.symbol | uppercase }}</span>
+      </div>
+    </header>
+
+    <section class="token-detail__market" aria-label="Market data">
+      <dl class="token-detail__grid">
+        @if (c.current_price != null) {
+          <dt>Price (USD)</dt>
+          <dd>{{ c.current_price | number: '1.2-6' }} USD</dd>
+        }
+        @if (c.market_cap != null) {
+          <dt>Market cap</dt>
+          <dd>{{ c.market_cap | number: '1.0-0' }} USD</dd>
+        }
+        @if (c.total_volume != null) {
+          <dt>24h volume</dt>
+          <dd>{{ c.total_volume | number: '1.0-0' }} USD</dd>
+        }
+        @if (c.high_24h != null) {
+          <dt>24h high</dt>
+          <dd>{{ c.high_24h | number: '1.2-2' }} USD</dd>
+        }
+        @if (c.low_24h != null) {
+          <dt>24h low</dt>
+          <dd>{{ c.low_24h | number: '1.2-2' }} USD</dd>
+        }
+        @if (c.price_change_percentage_24h != null) {
+          <dt>24h change</dt>
+          <dd
+            class="token-detail__change"
+            [class.token-detail__change--up]="c.price_change_percentage_24h >= 0"
+            [class.token-detail__change--down]="c.price_change_percentage_24h < 0"
+          >
+            {{ c.price_change_percentage_24h | number: '1.2-2' }}%
+          </dd>
+        }
+        @if (c.market_cap_rank != null) {
+          <dt>Rank</dt>
+          <dd>#{{ c.market_cap_rank }}</dd>
+        }
+      </dl>
+    </section>
+  </article>
+}
